@@ -13,6 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: gridSpacing) {
+            Color.blue.frame(width: 200, height: 200)
             HStack(spacing: gridSpacing) {
                 Text("1")
                 Text("2")
@@ -29,6 +30,7 @@ struct ContentView: View {
                 Text("9")
             }
         }
+        .background(Color(red: 1, green: 0.8, blue: 0))
     }
 }
 
