@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert: Bool = false
+
     let gridSpacing: CGFloat = 70
     let gradientWidth:  CGFloat = 70
     let gradientHeight:  CGFloat = 70
@@ -31,8 +33,10 @@ struct ContentView: View {
                 Text("8")
                 Text("9")
             }
-            Button("Tap me!") {
-                print("Button was tapped.")
+            Button("Show Alert") {
+                self.showingAlert = true
+            }.alert(isPresented: $showingAlert) {
+                  Alert(title: Text("Hello, SwiftUI!"), message: Text("This is the detail message."), dismissButton: .default(Text("OK")))
             }
             Button(action: { print("Edit button was tapped.") }) {
                 HStack(spacing: 10) {
