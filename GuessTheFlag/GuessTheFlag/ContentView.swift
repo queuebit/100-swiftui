@@ -14,7 +14,7 @@ struct ContentView: View {
     let gradientHeight:  CGFloat = 70
 
     var body: some View {
-        VStack(spacing: gridSpacing) {
+        VStack(spacing: gridSpacing / 2) {
             Color.blue.frame(width: 200, height: 200)
             HStack(spacing: gridSpacing) {
                 Text("1")
@@ -30,6 +30,15 @@ struct ContentView: View {
                 Text("7")
                 Text("8")
                 Text("9")
+            }
+            Button("Tap me!") {
+                print("Button was tapped.")
+            }
+            Button(action: { print("Edit button was tapped.") }) {
+                HStack(spacing: 10) {
+                    Image(systemName: "pencil").renderingMode(.original)
+                    Text("Edit")
+                }
             }
             HStack(spacing: gridSpacing / 2) {
                 LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: .top, endPoint: .bottom).frame(width: gradientWidth, height: gradientHeight)
