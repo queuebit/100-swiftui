@@ -9,11 +9,25 @@
 import SwiftUI
 
 struct ContentView: View {
+    let gridSpacing : CGFloat = 70
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Text("Hello, World!")
-            Text("This is inside a stack")
-            Spacer()
+        VStack(spacing: gridSpacing) {
+            HStack(spacing: gridSpacing) {
+                Text("1")
+                Text("2")
+                Text("3")
+            }
+            HStack(spacing: gridSpacing) {
+                Text("4")
+                Text("5")
+                Text("6")
+            }
+            HStack(spacing: gridSpacing) {
+                Text("7")
+                Text("8")
+                Text("9")
+            }
         }
     }
 }
