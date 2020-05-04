@@ -9,48 +9,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAlert: Bool = false
-
-    let gridSpacing: CGFloat = 70
-    let gradientWidth:  CGFloat = 70
-    let gradientHeight:  CGFloat = 70
-
     var body: some View {
-        VStack(spacing: gridSpacing / 2) {
-            Color.blue.frame(width: 200, height: 200)
-            HStack(spacing: gridSpacing) {
-                Text("1")
-                Text("2")
-                Text("3")
-            }
-            HStack(spacing: gridSpacing) {
-                Text("4")
-                Text("5")
-                Text("6")
-            }
-            HStack(spacing: gridSpacing) {
-                Text("7")
-                Text("8")
-                Text("9")
-            }
-            Button("Show Alert") {
-                self.showingAlert = true
-            }.alert(isPresented: $showingAlert) {
-                  Alert(title: Text("Hello, SwiftUI!"), message: Text("This is the detail message."), dismissButton: .default(Text("OK")))
-            }
-            Button(action: { print("Edit button was tapped.") }) {
-                HStack(spacing: 10) {
-                    Image(systemName: "pencil").renderingMode(.original)
-                    Text("Edit")
-                }
-            }
-            HStack(spacing: gridSpacing / 2) {
-                LinearGradient(gradient: Gradient(colors: [.white, .black]), startPoint: .top, endPoint: .bottom).frame(width: gradientWidth, height: gradientHeight)
-                RadialGradient(gradient: Gradient(colors: [.blue, .black]), center: .center, startRadius: 5, endRadius: 75).frame(width: gradientWidth, height: gradientHeight)
-                AngularGradient(gradient: Gradient(colors: [.red, .yellow, .green, .blue, .purple, .red]), center: .center).frame(width: gradientWidth, height: gradientHeight)
-            }
-
-        }
+        Text("Hello World")
     }
 }
 
