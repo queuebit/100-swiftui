@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var motto1: some View { Text("Draco dormiens") }
-    var motto2 = Text("nunquam titillandus")
-
     var body: some View {
-        VStack {
-            motto1
-                .foregroundColor(.red)
-            motto2
-                .foregroundColor(.blue)
+        VStack(spacing: 10) {
+            Text("First")
+                .font(.largeTitle)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .clipShape(Capsule())
+
+            Text("Second")
+                .font(.largeTitle)
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .clipShape(Capsule())
         }
 
     }
