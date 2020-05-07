@@ -35,18 +35,19 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Text(bookTitle)
-                    .italic()
-                Text("by: \(bookAuthor)")
-            }
-            .font(.caption)
             Text(chapterTitle)
                 // .modifier(Headline())
                 .headlineStyle()
             Text(excerpt)
                 .font(.body)
                 .padding()
+            Spacer()
+            HStack {
+                Text(bookTitle)
+                    .italic()
+                Text("by: \(bookAuthor)")
+            }
+            .font(.footnote)
         }
 
     }
