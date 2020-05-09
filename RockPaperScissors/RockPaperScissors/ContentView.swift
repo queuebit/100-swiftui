@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let throwOptions = ["Rock", "Paper", "Scissors"]
+    let throwOptions = ["✊", "✋", "✌️"]
 
     @State private var humanShouldWin = Bool.random()
     @State private var robotThrows = Int.random(in: 0 ... 2)
@@ -28,14 +28,16 @@ struct ContentView: View {
                     Text("Reset Game")
                 }
             } else {
-                Section(header: Text("Choose your move:")) {
+                Section(header: Text("Throw:").rotationEffect(.degrees(90))) {
                     ForEach(throwOptions, id: \.self) { (opt: String) -> Button<Text> in
                         Button(action: { self.round(humanThrew: opt) }) {
                             Text(opt)
                         }
                     }
                 }
-                    .padding()
+                .rotationEffect(.degrees(-90))
+                .font(.largeTitle)
+                .padding()
             }
             Spacer()
             HStack {
@@ -52,17 +54,17 @@ struct ContentView: View {
     func humanWins(humanThrew: String) -> Bool? {
         let robotThrew = throwOptions[robotThrows]
         switch "\(humanThrew)|\(robotThrew)" {
-        case "Rock|Paper":
+        case "✊|✋":
             return false
-        case "Rock|Scissors":
+        case "✊|✌️":
             return true
-        case "Paper|Rock":
+        case "✋|✊":
             return true
-        case "Paper|Scissors":
+        case "✋|✌️":
             return false
-        case "Scissors|Rock":
+        case "✌️|✊":
             return false
-        case "Scissors|Paper":
+        case "✌️|✋":
             return true
         default:
             return nil
