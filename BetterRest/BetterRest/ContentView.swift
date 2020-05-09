@@ -13,12 +13,17 @@ struct ContentView: View {
     @State private var wakeUp = Date()
 
     var body: some View {
-        NavigationView {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        let dateString = formatter.string(from: Date())
+
+        return NavigationView {
             Form {
                 Stepper(value: $sleepAmount, in: 4...12, step: 0.25) {
                     Text("\(sleepAmount, specifier: "%g") hours")
                 }
-                DatePicker("Please enter a date", selection: $wakeUp, in: Date()..., displayedComponents: .hourAndMinute)
+                DatePicker("Please enter a date", selection: $wakeUp, displayedComponents: .hourAndMinute)
+                Text("\(dateString)")
             }
         }
     }
