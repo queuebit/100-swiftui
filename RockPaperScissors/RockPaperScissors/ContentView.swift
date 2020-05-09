@@ -13,26 +13,45 @@ struct ContentView: View {
 
     @State private var humanShouldWin = Bool.random()
     @State private var robotThrows = Int.random(in: 0 ... 2)
-    @State private var playerScore = 0
+    @State private var humanScore = 0
     @State private var round = 0
 
     var body: some View {
         VStack {
             Text("Human should \(humanShouldWin ? "WIN" : "LOSE")")
-            Text("Robot threw \(throwOptions[robotThrows])")
-            Text("Choose your move:")
-            ForEach(throwOptions, id: \.self) { (opt: String) -> Button<Text> in
-                Button(action: { print(self.playerWins(playerThrew: opt) ?? "PUSH") }) {
-                    Text(opt)
+                .padding()
+                .font(.headline)
+            // Text("Robot threw \(throwOptions[robotThrows])")
+            Spacer()
+            if (self.round == 10) {
+                Button(action: { self.resetGame() }) {
+                    Text("Reset Game")
                 }
+            } else {
+                Section(header: Text("Choose your move:")) {
+                    ForEach(throwOptions, id: \.self) { (opt: String) -> Button<Text> in
+                        Button(action: { self.round(humanThrew: opt) }) {
+                            Text(opt)
+                        }
+                    }
+                }
+                    .padding()
             }
-            Text("ROUND: \(round)")
+            Spacer()
+            HStack {
+                Text("ROUND: \(round)")
+                    .padding()
+                Spacer()
+                Text("HUMAN SCORE: \(humanScore)")
+                    .padding()
+            }
+            .font(.footnote)
         }
     }
 
-    func playerWins(playerThrew: String) -> Bool? {
+    func humanWins(humanThrew: String) -> Bool? {
         let robotThrew = throwOptions[robotThrows]
-        switch "\(playerThrew)|\(robotThrew)" {
+        switch "\(humanThrew)|\(robotThrew)" {
         case "Rock|Paper":
             return false
         case "Rock|Scissors":
@@ -48,6 +67,37 @@ struct ContentView: View {
         default:
             return nil
         }
+    }
+
+    func round(humanThrew: String) -> Void {
+        let playerWins = self.humanWins(humanThrew: humanThrew)
+
+        switch playerWins {
+        case true:
+            if humanShouldWin {
+                self.humanScore += 1
+            } else {
+                self.humanScore -= 1
+            }
+        case false:
+            if humanShouldWin {
+                self.humanScore -= 1
+            } else {
+                self.humanScore += 1
+            }
+        default:
+            self.humanScore += 0
+        }
+        self.round += 1
+        self.robotThrows = Int.random(in: 0 ... 2)
+        self.humanShouldWin = Bool.random()
+    }
+
+    func resetGame() -> Void {
+        self.round = 0
+        self.robotThrows = Int.random(in: 0 ... 2)
+        self.humanScore = 0
+        self.humanShouldWin = Bool.random()
     }
 }
 
