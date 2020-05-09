@@ -21,10 +21,32 @@ struct ContentView: View {
             Text("Human should \(humanShouldWin ? "WIN" : "LOSE")")
             Text("Robot threw \(throwOptions[robotThrows])")
             Text("Choose your move:")
-            ForEach(throwOptions, id: \.self) {
-                Text($0)
+            ForEach(throwOptions, id: \.self) { (opt: String) -> Button<Text> in
+                Button(action: { print(self.playerWins(playerThrew: opt) ?? "PUSH") }) {
+                    Text(opt)
+                }
             }
             Text("ROUND: \(round)")
+        }
+    }
+
+    func playerWins(playerThrew: String) -> Bool? {
+        let robotThrew = throwOptions[robotThrows]
+        switch "\(playerThrew)|\(robotThrew)" {
+        case "Rock|Paper":
+            return false
+        case "Rock|Scissors":
+            return true
+        case "Paper|Rock":
+            return true
+        case "Paper|Scissors":
+            return false
+        case "Scissors|Rock":
+            return false
+        case "Scissors|Paper":
+            return true
+        default:
+            return nil
         }
     }
 }
