@@ -10,7 +10,25 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        List {
+            Section(header: Text("Section 1")) {
+                Text("Static 1")
+                Text("Static 2")
+                Text("Static 3")
+            }
+
+            Section(header: Text("Dynamic Section 2")) {
+                ForEach(0..<5) {
+                    Text("Dynamic row \($0)")
+                }
+            }
+
+            Section(header: Text("Section 3")) {
+                Text("Static 4")
+                Text("Static 5")
+            }
+        }
+    .listStyle(GroupedListStyle())
     }
 }
 
