@@ -9,13 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    let people = ["Finn", "Leia", "Luke", "Rey"]
-
     var body: some View {
-        List(people, id: \.self) {
-            Text($0)
+        if let fileURL = Bundle.main.url(forResource: "some-file", withExtension: "txt") {
+            // we found the file in our bundle
+            if let fileContents = try? String(contentsOf: fileURL) {
+                // we loaded the file into a string
+                print(fileContents)
+            }
         }
-    .listStyle(GroupedListStyle())
+
+        return Text("Hello World")
     }
 }
 
