@@ -9,14 +9,38 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        let word = "misspelled"
-        let checker = UITextChecker()
-        let range = NSRange(location: 0, length: word.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        let allGood = misspelledRange.location == NSNotFound
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
 
-        return Text("SpellCheck: \(allGood ? "good" : "bad")")
+    var body: some View {
+        NavigationView {
+            VStack {
+                TextField("Enter your word", text: $newWord, onCommit: addNewWord)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
+                    .padding()
+
+                List(usedWords, id: \.self) {
+                    Image(systemName: "\($0.count).circle")
+                    Text($0)
+                }
+            }
+        .navigationBarTitle(rootWord)
+        }
+    }
+
+    func addNewWord() {
+        let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard answer.count > 0 else {
+            return
+        }
+
+        // extra validation to come
+
+        usedWords.insert(answer, at: 0)
+        newWord = ""
     }
 }
 
