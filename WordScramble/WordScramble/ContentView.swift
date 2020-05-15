@@ -24,6 +24,7 @@ struct ContentView: View {
                 TextField("Enter your word", text: $newWord, onCommit: addNewWord)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
+                    .disableAutocorrection(true)
                     .padding()
 
                 List(usedWords, id: \.self) {
