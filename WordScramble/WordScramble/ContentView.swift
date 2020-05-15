@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var usedWords = [String]()
     @State private var rootWord = ""
     @State private var newWord = ""
+    @State private var score = 0
 
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -29,8 +30,13 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                Text("Score: \(score)")
+                    .font(.title)
+                    .padding()
             }
         .navigationBarTitle(rootWord)
+        .navigationBarItems(leading:
+            Button("New Word", action: startGame))
         .onAppear(perform: startGame)
         .alert(isPresented: $showingError) {
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
@@ -42,6 +48,11 @@ struct ContentView: View {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
 
         guard answer.count > 0 else {
+            return
+        }
+
+        guard answer.count >= 3 else {
+            wordError(title: "Word too short", message: "Words must be longer than three letters")
             return
         }
 
@@ -61,6 +72,18 @@ struct ContentView: View {
         }
 
         usedWords.insert(answer, at: 0)
+
+        switch answer.count {
+        case 6:
+            score += 8
+        case 7:
+            score += 10
+        case 8:
+            score += 15
+        default:
+            score += answer.count
+        }
+
         newWord = ""
     }
 
@@ -69,6 +92,8 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsURL) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                usedWords = []
+                score = 0
                 return
             }
         }
@@ -77,7 +102,7 @@ struct ContentView: View {
     }
 
     func isOriginal(word: String) -> Bool {
-        !usedWords.contains(word)
+        word.lowercased() != rootWord.lowercased() && !usedWords.contains(word)
     }
 
     func isPossible(word: String) -> Bool {
