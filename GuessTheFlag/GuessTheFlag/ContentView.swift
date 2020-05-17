@@ -11,6 +11,8 @@ import SwiftUI
 struct FlagImage: View {
     var country: String
     var strokeColor: Color
+    var animate: Bool
+    var correct: Bool
 
     var body: some View {
         Image(country)
@@ -19,6 +21,8 @@ struct FlagImage: View {
             .overlay(Capsule()
                 .stroke(strokeColor, lineWidth: 2))
             .shadow(color: .black, radius: 4)
+            .rotationEffect(animate && correct ? .degrees(360) : .degrees(0))
+            .animation(.easeIn)
     }
 }
 
@@ -57,7 +61,9 @@ struct ContentView: View {
                     Button(action: {
                         self.flagTapped(number)
                     }) {
-                        FlagImage(country: self.countries[number], strokeColor: self.strokeColor(number))
+                        FlagImage(country: self.countries[number], strokeColor: self.strokeColor(number),
+                                  animate: self.showingScore,
+                                  correct: number == self.correctAnswer)
                     }
                 }
                 if scoreOutOf > 0 {
