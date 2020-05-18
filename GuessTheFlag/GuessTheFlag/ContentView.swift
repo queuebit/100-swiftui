@@ -12,7 +12,7 @@ struct FlagImage: View {
     var country: String
     var strokeColor: Color
     var animate: Bool
-    var correct: Bool
+    var opacity: Double
 
     var body: some View {
         Image(country)
@@ -21,7 +21,8 @@ struct FlagImage: View {
             .overlay(Capsule()
                 .stroke(strokeColor, lineWidth: 2))
             .shadow(color: .black, radius: 4)
-            .rotationEffect(animate && correct ? .degrees(360) : .degrees(0))
+            .opacity(opacity)
+            .rotationEffect(animate ? .degrees(360) : .degrees(0))
             .animation(.easeIn)
     }
 }
@@ -62,8 +63,8 @@ struct ContentView: View {
                         self.flagTapped(number)
                     }) {
                         FlagImage(country: self.countries[number], strokeColor: self.strokeColor(number),
-                                  animate: self.showingScore,
-                                  correct: number == self.correctAnswer)
+                                  animate: self.showingScore && number == self.correctAnswer,
+                                  opacity: (self.showingScore && number != self.correctAnswer) ? 0.6 : 1.0)
                     }
                 }
                 if scoreOutOf > 0 {
