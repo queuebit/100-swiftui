@@ -63,7 +63,7 @@ struct ContentView: View {
                         self.flagTapped(number)
                     }) {
                         FlagImage(country: self.countries[number], strokeColor: self.strokeColor(number),
-                                  animate: self.showingScore && number == self.correctAnswer,
+                                  animate: self.scoreTitle == "Correct" && self.showingScore && number == self.correctAnswer,
                                   opacity: (self.showingScore && number != self.correctAnswer) ? 0.6 : 1.0)
                     }
                 }
