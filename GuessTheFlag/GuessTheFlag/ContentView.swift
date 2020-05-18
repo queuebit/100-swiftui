@@ -11,18 +11,21 @@ import SwiftUI
 struct FlagImage: View {
     var country: String
     var strokeColor: Color
-    var animate: Bool
+    var correctAnimate: Bool
+    var wrongAnimate: Bool
     var opacity: Double
 
     var body: some View {
         Image(country)
             .renderingMode(.original)
+            .frame(width: wrongAnimate ? 100 : 200, height: 100, alignment: .bottomTrailing )
+            .animation(.interpolatingSpring(stiffness: 10, damping: 1))
             .clipShape(Capsule())
             .overlay(Capsule()
                 .stroke(strokeColor, lineWidth: 2))
             .shadow(color: .black, radius: 4)
             .opacity(opacity)
-            .rotationEffect(animate ? .degrees(360) : .degrees(0))
+            .rotationEffect(correctAnimate ? .degrees(360) : .degrees(0))
             .animation(.easeIn)
     }
 }
@@ -62,8 +65,10 @@ struct ContentView: View {
                     Button(action: {
                         self.flagTapped(number)
                     }) {
-                        FlagImage(country: self.countries[number], strokeColor: self.strokeColor(number),
-                                  animate: self.scoreTitle == "Correct" && self.showingScore && number == self.correctAnswer,
+                        FlagImage(country: self.countries[number],
+                                  strokeColor: self.strokeColor(number),
+                                  correctAnimate: self.scoreTitle == "Correct" && self.showingScore && number == self.correctAnswer,
+                                  wrongAnimate: self.scoreTitle != "Correct" && self.showingScore && number == self.correctAnswer,
                                   opacity: (self.showingScore && number != self.correctAnswer) ? 0.6 : 1.0)
                     }
                 }
