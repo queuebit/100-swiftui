@@ -1,0 +1,26 @@
+Next Action:
+- Verify right answer and nextProblem
+
+Todo:
+- Restart
+- Multiple views
+- Selection of options for problems [0...12]
+- Selection of the number of problems
+
+Later:
+- Add selections for +, -, /
+- Add a timing element, with a visible "countdown clock animation"
+- Car racing a la <https://en.wikipedia.org/wiki/Pole_Position> based on an 80% score
+- Inflate balloon animal against an opponent, before it takes off based on an 80% score
+- Choose game mode
+
+----
+
+Challenges:
+https://www.hackingwithswift.com/guide/ios-swiftui/3/3/challenge
+
+References:
+https://kenney.nl/assets/car-kit
+https://kenney.nl/assets/animal-pac
+https://kenney.nl/assets/interface-sounds
+https://kenney.nl/assets/kenney-fonts
