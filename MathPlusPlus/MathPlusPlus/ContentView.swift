@@ -8,13 +8,17 @@
 
 import SwiftUI
 
+var questions: [[Int]] = [[1, 1], [1, 2], [12, 7], [3, 5], [7, 6]]
+var answers: [Int] = [1, 2, 84, 15, 42]
+
 struct ContentView: View {
-    @State private var questionNumber = 1
+    @State private var answer: String = ""
+    @State private var questionNumber = 0
     @State private var questions = 4
     @State private var operation = "*"
-    @State private var operands = [12, 7]
-    @State private var correctAnswer = 84
-    @State private var answer: String = ""
+    @State private var operands: [Int] = [1, 1]
+    @State private var correctAnswer = 1
+    @State private var score = 0
 
     var body: some View {
         NavigationView {
@@ -33,11 +37,34 @@ struct ContentView: View {
                     print(Int(self.answer) == (self.operands[0] * self.operands[1]))
                 }
 
-                Text("\(questionNumber) of \(questions)")
+                HStack {
+                    Text("\(questionNumber) of \(questions)")
+                    Text("Score: \(score)")
+                }
                 .padding()
             }
+            .onAppear(perform: startGame)
             .navigationBarTitle("Math++")
 
+        }
+    }
+
+    func startGame() {
+        questionNumber = 1
+//        print(type(of: questions[0] ?? [1, 1]))
+        correctAnswer = answers[questionNumber]
+    }
+
+    func checkAnswer(answer: Int) {
+        if (answer == correctAnswer) {
+            score += 1
+        }
+
+        if (questionNumber == questions) {
+            print("Game over; Restarting")
+            questionNumber = 0
+        } else {
+            questionNumber += 1
         }
     }
 }
