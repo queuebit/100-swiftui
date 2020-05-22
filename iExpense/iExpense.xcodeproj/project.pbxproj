@@ -13,6 +13,7 @@
 		5000B3B82474AE5C00C392F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5000B3B72474AE5C00C392F4 /* Assets.xcassets */; };
 		5000B3BB2474AE5C00C392F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5000B3BA2474AE5C00C392F4 /* Preview Assets.xcassets */; };
 		5000B3BE2474AE5C00C392F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5000B3BC2474AE5C00C392F4 /* LaunchScreen.storyboard */; };
+		50AB888024776ADC00AADC3C /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB887F24776ADC00AADC3C /* ExpenseItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5000B3BA2474AE5C00C392F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5000B3BD2474AE5C00C392F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5000B3BF2474AE5C00C392F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50AB887F24776ADC00AADC3C /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				5000B3BC2474AE5C00C392F4 /* LaunchScreen.storyboard */,
 				5000B3BF2474AE5C00C392F4 /* Info.plist */,
 				5000B3B92474AE5C00C392F4 /* Preview Content */,
+				50AB887F24776ADC00AADC3C /* ExpenseItem.swift */,
 			);
 			path = iExpense;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 				5000B3B22474AE5B00C392F4 /* AppDelegate.swift in Sources */,
 				5000B3B42474AE5B00C392F4 /* SceneDelegate.swift in Sources */,
 				5000B3B62474AE5B00C392F4 /* ContentView.swift in Sources */,
+				50AB888024776ADC00AADC3C /* ExpenseItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
