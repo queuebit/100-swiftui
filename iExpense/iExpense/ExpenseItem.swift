@@ -14,3 +14,7 @@ struct ExpenseItem: Identifiable {
     let type: String
     let amount: Int
 }
+
+class Expenses: ObservableObject {
+    @Published var items = [ExpenseItem]()
+}
