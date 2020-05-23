@@ -31,10 +31,13 @@ struct ContentView: View {
             }
             .navigationBarTitle("iExpense")
             .navigationBarItems(trailing:
-                Button(action: {
-                    self.showingAddExpense = true
-                }) {
-                    Image(systemName: "plus")
+                HStack {
+                    Button(action: {
+                        self.showingAddExpense = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    EditButton()
                 }
             )
             .sheet(isPresented: $showingAddExpense) {
