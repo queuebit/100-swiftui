@@ -15,6 +15,10 @@ struct AddView: View {
     @State private var type = "Personal"
     @State private var amount = ""
 
+    @State private var errorTitle = ""
+    @State private var errorMessage = ""
+    @State private var showingError = false
+
     static let types = ["Business", "Personal"]
 
     var body: some View {
@@ -36,9 +40,14 @@ struct AddView: View {
                     self.expenses.items.append(item)
                     self.presentationMode.wrappedValue.dismiss()
                 } else {
-                    print(self.amount)
+                    self.errorTitle = "Not a valid amount"
+                    self.errorMessage = "\(self.amount) is not a number"
+                    self.showingError = true
                 }
             })
+            .alert(isPresented: $showingError) {
+                    Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
