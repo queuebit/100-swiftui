@@ -8,15 +8,30 @@
 
 import SwiftUI
 
+struct CustomText: View {
+    var text: String
+
+    var body: some View {
+        Text(text)
+    }
+
+    init(_ text: String) {
+        // However, there’s an important catch that you need to be aware of: when we add views to a scroll view they get created immediately.
+        print("Creating a new CustomText")
+        self.text = text
+    }
+}
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            GeometryReader { geo in
-                Image("moriarty")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: geo.size.width)
+        ScrollView(.vertical) {
+            VStack(spacing: 10) {
+                ForEach(0..<100) {
+                    CustomText("Item \($0)")
+                        .font(.title)
+                }
             }
+            .frame(maxWidth: .infinity)
         }
     }
 }
