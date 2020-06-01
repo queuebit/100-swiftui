@@ -18,6 +18,7 @@
 		50619B2F247DE7CC00CDF722 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50619B2D247DE7CC00CDF722 /* LaunchScreen.storyboard */; };
 		50638E1C2485C3FB00F5376E /* missions.json in Resources */ = {isa = PBXBuildFile; fileRef = 50638E1B2485C3FB00F5376E /* missions.json */; };
 		50638E1E2485C40D00F5376E /* astronauts.json in Resources */ = {isa = PBXBuildFile; fileRef = 50638E1D2485C40D00F5376E /* astronauts.json */; };
+		50638E222485C4B600F5376E /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50638E212485C4B600F5376E /* MissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		50619B30247DE7CC00CDF722 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50638E1B2485C3FB00F5376E /* missions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = missions.json; sourceTree = "<group>"; };
 		50638E1D2485C40D00F5376E /* astronauts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = astronauts.json; sourceTree = "<group>"; };
+		50638E212485C4B600F5376E /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				50619B22247DE7CB00CDF722 /* AppDelegate.swift */,
 				50619B24247DE7CB00CDF722 /* SceneDelegate.swift */,
+				50638E212485C4B600F5376E /* MissionView.swift */,
 				50619B26247DE7CB00CDF722 /* ContentView.swift */,
 				50619B28247DE7CC00CDF722 /* Assets.xcassets */,
 				5021538724808F8900393E46 /* Astronaut.swift */,
@@ -163,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50638E222485C4B600F5376E /* MissionView.swift in Sources */,
 				5021538C2480912D00393E46 /* Mission.swift in Sources */,
 				50619B23247DE7CB00CDF722 /* AppDelegate.swift in Sources */,
 				50619B25247DE7CB00CDF722 /* SceneDelegate.swift in Sources */,
