@@ -10,16 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Image("moriarty")
-                .resizable()
-                .scaledToFit()
-
-            Rectangle()
-                .fill(Color.blue)
-                .blendMode(.multiply)
-        }
-        .frame(width: 400, height: 500)
+        Image("moriarty")
+            .resizable()
+            .scaledToFit()
+            .colorMultiply(.blue)
     }
 }
 
