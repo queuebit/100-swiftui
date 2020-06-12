@@ -12,9 +12,15 @@ struct Arrow: Shape {
     var arrowRatio: CGFloat
     var insetAmount: CGFloat
 
-    var animatableData: CGFloat {
-        get { insetAmount }
-        set { self.insetAmount = newValue }
+    public var animatableData: AnimatablePair<CGFloat, CGFloat> {
+        get {
+           AnimatablePair(arrowRatio, insetAmount)
+        }
+
+        set {
+            self.arrowRatio = newValue.first
+            self.insetAmount = newValue.second
+        }
     }
 
     func path(in rect: CGRect) -> Path {
@@ -30,27 +36,6 @@ struct Arrow: Shape {
         path.addLine(to: CGPoint(x: rect.maxX, y: arrowHeadLength))
         path.addLine(to: CGPoint(x: rect.minX, y: arrowHeadLength))
         path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-
-        return path
-   }
-}
-
-struct Trapezoid: Shape {
-    var insetAmount: CGFloat
-
-    var animatableData: CGFloat {
-        get { insetAmount }
-        set { self.insetAmount = newValue }
-    }
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-
-        path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: insetAmount, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX - insetAmount, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: 0, y: rect.maxY))
 
         return path
    }
